@@ -5,6 +5,7 @@ import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { Button, TextInput, useToast, Card } from '../components';
 import { useAuth } from '../context';
 import { Colors, Typography, Spacing, BorderRadius } from '../styles';
+import { loginSchema, validateAsync } from '../utils/validation';
 import type { RootStackParamList } from '../navigation/types';
 
 const LoginScreen: React.FC = () => {
@@ -16,19 +17,19 @@ const LoginScreen: React.FC = () => {
   const [username, setUsername] = useState('emilys');
   const [password, setPassword] = useState('emilyspass');
   const [loading, setLoading] = useState(false);
-  const [errors, setErrors] = useState<{ username?: string; password?: string }>({});
-
-  const validate = (): boolean => {
-    const newErrors: typeof errors = {};
-    if (!username.trim()) newErrors.username = 'Username wajib diisi';
-    if (!password.trim()) newErrors.password = 'Password wajib diisi';
-    else if (password.length < 6) newErrors.password = 'Password minimal 6 karakter';
-    setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
-  };
+  const [errors, setErrors] = useState<Record<string, string>>({});
 
   const handleLogin = async () => {
-    if (!validate()) return;
+    setErrors({});
+    const { isValid, errors: validationErrors } = await validateAsync(loginSchema, {
+      username,
+      password,
+    });
+
+    if (!isValid) {
+      setErrors(validationErrors);
+      return;
+    }
 
     setLoading(true);
     try {

@@ -1,5 +1,6 @@
 import api from './api';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { loginSchema, validateAsync } from '../utils/validation';
 
 interface LoginPayload {
   username: string;
@@ -30,6 +31,12 @@ interface User {
 
 export const authService = {
   login: async (payload: LoginPayload): Promise<LoginResponse> => {
+    const { isValid, errors } = await validateAsync(loginSchema, payload);
+    if (!isValid) {
+      const firstError = Object.values(errors)[0];
+      throw new Error(firstError);
+    }
+
     const { data } = await api.post<LoginResponse>('/auth/login', payload);
     await AsyncStorage.setItem('accessToken', data.accessToken);
     await AsyncStorage.setItem('refreshToken', data.refreshToken);
@@ -46,7 +53,9 @@ export const authService = {
   },
 
   logout: async (): Promise<void> => {
-    await AsyncStorage.multiRemove(['accessToken', 'refreshToken', 'user']);
+    await AsyncStorage.removeItem('accessToken');
+    await AsyncStorage.removeItem('refreshToken');
+    await AsyncStorage.removeItem('user');
   },
 
   getUser: async (): Promise<User | null> => {

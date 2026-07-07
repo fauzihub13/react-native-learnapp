@@ -69,6 +69,7 @@ const TextInput: React.FC<TextInputProps> = ({
   errorColor = Colors.danger,
   backgroundColor,
   borderRadius = BorderRadius.lg,
+  keyboardType,
   onBlur,
   onFocus,
   ...rest
@@ -77,6 +78,7 @@ const TextInput: React.FC<TextInputProps> = ({
   const [showPassword, setShowPassword] = useState(false);
 
   const sizeStyle = SIZE_STYLES[size];
+  const isNumeric = keyboardType === 'numeric' || keyboardType === 'number-pad' || keyboardType === 'decimal-pad';
 
   const resolvedBorderColor = error
     ? errorColor
@@ -97,6 +99,17 @@ const TextInput: React.FC<TextInputProps> = ({
   const handleBlur = (e: any) => {
     setIsFocused(false);
     onBlur?.(e);
+  };
+
+  const handleChangeText = (text: string) => {
+    if (isNumeric) {
+      const filtered = keyboardType === 'decimal-pad'
+        ? text.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1')
+        : text.replace(/[^0-9]/g, '');
+      onChangeText(filtered);
+    } else {
+      onChangeText(text);
+    }
   };
 
   const getContainerStyle = (): ViewStyle => {
@@ -147,11 +160,12 @@ const TextInput: React.FC<TextInputProps> = ({
             inputStyle,
           ]}
           value={value}
-          onChangeText={onChangeText}
+          onChangeText={handleChangeText}
           placeholder={placeholder}
           placeholderTextColor={Colors.gray400}
           editable={!disabled}
           secureTextEntry={isPassword && !showPassword}
+          keyboardType={keyboardType}
           multiline={multiline}
           numberOfLines={numberOfLines}
           onFocus={handleFocus}

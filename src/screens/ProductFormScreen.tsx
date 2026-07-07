@@ -1,19 +1,20 @@
-import React, { useState, useEffect } from 'react';
-import { View, Text, StyleSheet, ScrollView } from 'react-native';
-import { useRoute, useNavigation } from '@react-navigation/native';
+import { useNavigation, useRoute } from '@react-navigation/native';
 import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import { Header, TextInput, Button, useToast } from '../components';
-import { productsService, Product } from '../services';
-import { Colors, Typography, Spacing } from '../styles';
+import React, { useEffect, useState } from 'react';
+import { ScrollView, StyleSheet, Text, View } from 'react-native';
+import { Button, Header, TextInput, useToast } from '../components';
 import type { RootStackParamList } from '../navigation/types';
+import { productsService } from '../services';
+import { Colors, Spacing, Typography } from '../styles';
+import { productSchema, validateAsync } from '../utils/validation';
 
 interface FormData {
   title: string;
   description: string;
-  price: string;
+  price: number;
   category: string;
   brand: string;
-  stock: string;
+  stock: number;
 }
 
 interface FormErrors {
@@ -37,12 +38,12 @@ const ProductFormScreen: React.FC = () => {
   const [form, setForm] = useState<FormData>({
     title: '',
     description: '',
-    price: '',
+    price: 0,
     category: '',
     brand: '',
-    stock: '',
+    stock: 0,
   });
-  const [errors, setErrors] = useState<FormErrors>({});
+  const [errors, setErrors] = useState<Record<string, string>>({});
 
   useEffect(() => {
     if (isEdit && productId) {
@@ -56,10 +57,10 @@ const ProductFormScreen: React.FC = () => {
       setForm({
         title: product.title,
         description: product.description,
-        price: product.price.toString(),
+        price: product.price || 0,
         category: product.category,
         brand: product.brand || '',
-        stock: product.stock?.toString() || '',
+        stock: product.stock || 0,
       });
     } catch (error: any) {
       toast.error('Gagal memuat produk', error.message);
@@ -70,36 +71,39 @@ const ProductFormScreen: React.FC = () => {
   };
 
   const updateField = (field: keyof FormData, value: string) => {
-    setForm((prev) => ({ ...prev, [field]: value }));
-    if (errors[field as keyof FormErrors]) {
-      setErrors((prev) => ({ ...prev, [field]: undefined }));
+    setForm(prev => ({ ...prev, [field]: value }));
+    if (errors[field]) {
+      setErrors(prev => ({ ...prev, [field]: '' }));
     }
-  };
-
-  const validate = (): boolean => {
-    const newErrors: FormErrors = {};
-    if (!form.title.trim()) newErrors.title = 'Title wajib diisi';
-    if (!form.description.trim()) newErrors.description = 'Description wajib diisi';
-    if (!form.price.trim()) newErrors.price = 'Price wajib diisi';
-    else if (isNaN(Number(form.price)) || Number(form.price) <= 0) {
-      newErrors.price = 'Price harus angka positif';
-    }
-    if (!form.category.trim()) newErrors.category = 'Category wajib diisi';
-    setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
   };
 
   const handleSubmit = async () => {
-    if (!validate()) return;
+    setErrors({});
+    const { isValid, errors: validationErrors } = await validateAsync(
+      productSchema,
+      {
+        title: form.title,
+        description: form.description,
+        price: form.price,
+        category: form.category,
+        brand: form.brand || undefined,
+        stock: form.stock || undefined,
+      },
+    );
+
+    if (!isValid) {
+      setErrors(validationErrors);
+      return;
+    }
 
     setLoading(true);
     try {
       const payload = {
-        title: form.title,
-        description: form.description,
+        title: form.title.trim(),
+        description: form.description.trim(),
         price: Number(form.price),
-        category: form.category,
-        brand: form.brand || undefined,
+        category: form.category.trim(),
+        brand: form.brand.trim() || undefined,
         stock: form.stock ? Number(form.stock) : undefined,
       };
 
@@ -131,10 +135,7 @@ const ProductFormScreen: React.FC = () => {
 
   return (
     <View style={styles.container}>
-      <Header
-        title={isEdit ? 'Edit Product' : 'Add Product'}
-        showBack
-      />
+      <Header title={isEdit ? 'Edit Product' : 'Add Product'} showBack />
 
       <ScrollView
         style={styles.scrollView}
@@ -142,10 +143,12 @@ const ProductFormScreen: React.FC = () => {
         keyboardShouldPersistTaps="handled"
       >
         <View style={styles.methodBar}>
-          <View style={[
-            styles.methodBadge,
-            { backgroundColor: isEdit ? Colors.warning : Colors.primary }
-          ]}>
+          <View
+            style={[
+              styles.methodBadge,
+              { backgroundColor: isEdit ? Colors.warning : Colors.primary },
+            ]}
+          >
             <Text style={styles.methodText}>
               {isEdit ? `PUT /products/${productId}` : 'POST /products/add'}
             </Text>
@@ -155,7 +158,7 @@ const ProductFormScreen: React.FC = () => {
         <TextInput
           label="Title"
           value={form.title}
-          onChangeText={(v) => updateField('title', v)}
+          onChangeText={v => updateField('title', v)}
           placeholder="Product title"
           error={errors.title}
           required
@@ -164,7 +167,7 @@ const ProductFormScreen: React.FC = () => {
         <TextInput
           label="Description"
           value={form.description}
-          onChangeText={(v) => updateField('description', v)}
+          onChangeText={v => updateField('description', v)}
           placeholder="Product description"
           multiline
           numberOfLines={3}
@@ -175,8 +178,8 @@ const ProductFormScreen: React.FC = () => {
 
         <TextInput
           label="Price"
-          value={form.price}
-          onChangeText={(v) => updateField('price', v)}
+          value={form.price.toString()}
+          onChangeText={v => updateField('price', v)}
           placeholder="0.00"
           keyboardType="decimal-pad"
           error={errors.price}
@@ -187,7 +190,7 @@ const ProductFormScreen: React.FC = () => {
         <TextInput
           label="Category"
           value={form.category}
-          onChangeText={(v) => updateField('category', v)}
+          onChangeText={v => updateField('category', v)}
           placeholder="e.g., electronics, clothing"
           error={errors.category}
           required
@@ -197,15 +200,15 @@ const ProductFormScreen: React.FC = () => {
         <TextInput
           label="Brand"
           value={form.brand}
-          onChangeText={(v) => updateField('brand', v)}
+          onChangeText={v => updateField('brand', v)}
           placeholder="Brand name (optional)"
           containerStyle={styles.mt}
         />
 
         <TextInput
           label="Stock"
-          value={form.stock}
-          onChangeText={(v) => updateField('stock', v)}
+          value={form.stock.toString()}
+          onChangeText={v => updateField('stock', v)}
           placeholder="0"
           keyboardType="number-pad"
           containerStyle={styles.mt}
