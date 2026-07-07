@@ -55,6 +55,13 @@ const MENU_ITEMS: MenuItem[] = [
     screen: 'ModalDemo',
     color: '#5856D6',
   },
+  {
+    id: '7',
+    title: 'Switch',
+    subtitle: 'Toggle on/off dengan animasi',
+    screen: 'SwitchDemo',
+    color: '#30D158',
+  },
 ];
 
 const HomeScreen: React.FC = () => {

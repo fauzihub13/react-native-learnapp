@@ -10,6 +10,7 @@ import CardDemoScreen from '../screens/CardDemoScreen';
 import DropdownDemoScreen from '../screens/DropdownDemoScreen';
 import CheckboxDemoScreen from '../screens/CheckboxDemoScreen';
 import ModalDemoScreen from '../screens/ModalDemoScreen';
+import SwitchDemoScreen from '../screens/SwitchDemoScreen';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -58,6 +59,11 @@ const AppNavigator: React.FC = () => {
           name="ModalDemo"
           component={ModalDemoScreen}
           options={{ title: 'Modal' }}
+        />
+        <Stack.Screen
+          name="SwitchDemo"
+          component={SwitchDemoScreen}
+          options={{ title: 'Switch' }}
         />
       </Stack.Navigator>
     </NavigationContainer>

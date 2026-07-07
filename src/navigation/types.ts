@@ -8,6 +8,7 @@ export type RootStackParamList = {
   DropdownDemo: undefined;
   CheckboxDemo: undefined;
   ModalDemo: undefined;
+  SwitchDemo: undefined;
 };
 
 export type RootStackScreenProps<T extends keyof RootStackParamList> =
