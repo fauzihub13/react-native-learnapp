@@ -90,6 +90,13 @@ const MENU_ITEMS: MenuItem[] = [
     screen: 'HeaderDemo',
     color: '#BF5AF2',
   },
+  {
+    id: '12',
+    title: 'API CRUD',
+    subtitle: 'Login, Products CRUD dengan DummyJSON',
+    screen: 'Login',
+    color: '#FF375F',
+  },
 ];
 
 const HomeScreen: React.FC = () => {

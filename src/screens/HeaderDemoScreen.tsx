@@ -99,7 +99,7 @@ const HeaderDemoScreen: React.FC = () => {
             transparent
             titleStyle={{ color: Colors.white }}
             subtitleStyle={{ color: 'rgba(255,255,255,0.7)' }}
-          />
+          />  
         </View>
 
         <View style={styles.preview}>

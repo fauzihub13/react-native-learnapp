@@ -15,6 +15,10 @@ import RadioDemoScreen from '../screens/RadioDemoScreen';
 import TabBarDemoScreen from '../screens/TabBarDemoScreen';
 import ToastDemoScreen from '../screens/ToastDemoScreen';
 import HeaderDemoScreen from '../screens/HeaderDemoScreen';
+import LoginScreen from '../screens/LoginScreen';
+import ProductsScreen from '../screens/ProductsScreen';
+import ProductDetailScreen from '../screens/ProductDetailScreen';
+import ProductFormScreen from '../screens/ProductFormScreen';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -88,6 +92,31 @@ const AppNavigator: React.FC = () => {
           name="HeaderDemo"
           component={HeaderDemoScreen}
           options={{ title: 'Header' }}
+        />
+        <Stack.Screen
+          name="Login"
+          component={LoginScreen}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="Products"
+          component={ProductsScreen}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="ProductDetail"
+          component={ProductDetailScreen}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="AddProduct"
+          component={ProductFormScreen}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="EditProduct"
+          component={ProductFormScreen}
+          options={{ headerShown: false }}
         />
       </Stack.Navigator>
     </NavigationContainer>

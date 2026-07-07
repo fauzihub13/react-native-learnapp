@@ -13,6 +13,11 @@ export type RootStackParamList = {
   TabBarDemo: undefined;
   ToastDemo: undefined;
   HeaderDemo: undefined;
+  Login: undefined;
+  Products: undefined;
+  ProductDetail: { id: number };
+  AddProduct: undefined;
+  EditProduct: { id: number };
 };
 
 export type RootStackScreenProps<T extends keyof RootStackParamList> =
