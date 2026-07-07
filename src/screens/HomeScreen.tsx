@@ -83,6 +83,13 @@ const MENU_ITEMS: MenuItem[] = [
     screen: 'ToastDemo',
     color: '#FF9F0A',
   },
+  {
+    id: '11',
+    title: 'Header',
+    subtitle: 'Navbar dengan back, actions, title',
+    screen: 'HeaderDemo',
+    color: '#BF5AF2',
+  },
 ];
 
 const HomeScreen: React.FC = () => {

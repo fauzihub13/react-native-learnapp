@@ -10,3 +10,4 @@ export { default as Radio, RadioGroup } from './Radio';
 export { default as TabBar, TabContent } from './TabBar';
 export { default as ToastProvider, useToast } from './Toast';
 export type { ToastConfig, ToastType, ToastPosition } from './Toast';
+export { default as Header } from './Header';

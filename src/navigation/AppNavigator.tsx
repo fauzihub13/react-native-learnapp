@@ -14,6 +14,7 @@ import SwitchDemoScreen from '../screens/SwitchDemoScreen';
 import RadioDemoScreen from '../screens/RadioDemoScreen';
 import TabBarDemoScreen from '../screens/TabBarDemoScreen';
 import ToastDemoScreen from '../screens/ToastDemoScreen';
+import HeaderDemoScreen from '../screens/HeaderDemoScreen';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -82,6 +83,11 @@ const AppNavigator: React.FC = () => {
           name="ToastDemo"
           component={ToastDemoScreen}
           options={{ title: 'Toast' }}
+        />
+        <Stack.Screen
+          name="HeaderDemo"
+          component={HeaderDemoScreen}
+          options={{ title: 'Header' }}
         />
       </Stack.Navigator>
     </NavigationContainer>

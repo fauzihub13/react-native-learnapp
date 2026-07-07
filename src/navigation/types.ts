@@ -12,6 +12,7 @@ export type RootStackParamList = {
   RadioDemo: undefined;
   TabBarDemo: undefined;
   ToastDemo: undefined;
+  HeaderDemo: undefined;
 };
 
 export type RootStackScreenProps<T extends keyof RootStackParamList> =
