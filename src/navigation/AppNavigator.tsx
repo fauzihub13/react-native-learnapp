@@ -9,6 +9,7 @@ import TextInputDemoScreen from '../screens/TextInputDemoScreen';
 import CardDemoScreen from '../screens/CardDemoScreen';
 import DropdownDemoScreen from '../screens/DropdownDemoScreen';
 import CheckboxDemoScreen from '../screens/CheckboxDemoScreen';
+import ModalDemoScreen from '../screens/ModalDemoScreen';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -52,6 +53,11 @@ const AppNavigator: React.FC = () => {
           name="CheckboxDemo"
           component={CheckboxDemoScreen}
           options={{ title: 'Checkbox' }}
+        />
+        <Stack.Screen
+          name="ModalDemo"
+          component={ModalDemoScreen}
+          options={{ title: 'Modal' }}
         />
       </Stack.Navigator>
     </NavigationContainer>

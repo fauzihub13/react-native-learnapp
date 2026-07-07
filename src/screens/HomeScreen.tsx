@@ -48,6 +48,13 @@ const MENU_ITEMS: MenuItem[] = [
     screen: 'CheckboxDemo',
     color: '#FF2D55',
   },
+  {
+    id: '6',
+    title: 'Modal',
+    subtitle: 'Center modal & bottom sheet popup',
+    screen: 'ModalDemo',
+    color: '#5856D6',
+  },
 ];
 
 const HomeScreen: React.FC = () => {

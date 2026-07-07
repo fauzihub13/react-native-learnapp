@@ -4,3 +4,4 @@ export { default as Card } from './Card';
 export { default as Dropdown } from './Dropdown';
 export type { DropdownOption } from './Dropdown';
 export { default as Checkbox, CheckboxGroup } from './Checkbox';
+export { default as Modal } from './Modal';

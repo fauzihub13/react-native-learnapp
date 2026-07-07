@@ -7,6 +7,7 @@ export type RootStackParamList = {
   CardDemo: undefined;
   DropdownDemo: undefined;
   CheckboxDemo: undefined;
+  ModalDemo: undefined;
 };
 
 export type RootStackScreenProps<T extends keyof RootStackParamList> =
