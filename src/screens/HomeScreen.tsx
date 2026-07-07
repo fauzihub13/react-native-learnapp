@@ -62,6 +62,13 @@ const MENU_ITEMS: MenuItem[] = [
     screen: 'SwitchDemo',
     color: '#30D158',
   },
+  {
+    id: '8',
+    title: 'Radio',
+    subtitle: 'Single selection dengan group',
+    screen: 'RadioDemo',
+    color: '#FF6482',
+  },
 ];
 
 const HomeScreen: React.FC = () => {
