@@ -41,6 +41,13 @@ const MENU_ITEMS: MenuItem[] = [
     screen: 'DropdownDemo',
     color: '#AF52DE',
   },
+  {
+    id: '5',
+    title: 'Checkbox',
+    subtitle: 'Single checkbox & checkbox group',
+    screen: 'CheckboxDemo',
+    color: '#FF2D55',
+  },
 ];
 
 const HomeScreen: React.FC = () => {
