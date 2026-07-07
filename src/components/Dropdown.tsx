@@ -9,6 +9,7 @@ import {
   ViewStyle,
   TextStyle,
 } from 'react-native';
+import { Colors, Typography, Spacing, BorderRadius } from '../styles';
 
 export interface DropdownOption {
   label: string;
@@ -197,33 +198,33 @@ const styles = StyleSheet.create({
     marginBottom: 0,
   },
   label: {
-    color: '#374151',
-    fontWeight: '500',
+    color: Colors.gray700,
+    fontWeight: Typography.fontWeight.medium,
     marginBottom: 6,
   },
   required: {
-    color: '#FF3B30',
+    color: Colors.danger,
   },
   valueText: {
     flex: 1,
   },
   arrow: {
     fontSize: 16,
-    color: '#6B7280',
-    marginLeft: 8,
+    color: Colors.gray500,
+    marginLeft: Spacing.sm,
   },
   helper: {
-    marginTop: 4,
+    marginTop: Spacing.xs,
   },
   overlay: {
     flex: 1,
     backgroundColor: 'rgba(0,0,0,0.5)',
     justifyContent: 'center',
-    paddingHorizontal: 24,
+    paddingHorizontal: Spacing.xl,
   },
   modalContent: {
-    backgroundColor: '#FFF',
-    borderRadius: 20,
+    backgroundColor: Colors.white,
+    borderRadius: BorderRadius['2xl'],
     maxHeight: '60%',
     overflow: 'hidden',
   },
@@ -231,41 +232,41 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    padding: 16,
+    padding: Spacing.base,
     borderBottomWidth: 1,
-    borderBottomColor: '#F3F4F6',
+    borderBottomColor: Colors.gray100,
   },
   modalTitle: {
-    fontSize: 17,
-    fontWeight: '600',
-    color: '#000',
+    fontSize: Typography.fontSize.base,
+    fontWeight: Typography.fontWeight.semibold,
+    color: Colors.textPrimary,
   },
   closeButton: {
     fontSize: 20,
-    color: '#6B7280',
-    padding: 4,
+    color: Colors.gray500,
+    padding: Spacing.xs,
   },
   optionList: {
-    paddingVertical: 8,
+    paddingVertical: Spacing.sm,
   },
   option: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    paddingHorizontal: 20,
+    paddingHorizontal: Spacing.lg,
     paddingVertical: 14,
   },
   optionSelected: {
     backgroundColor: '#F0F4FF',
   },
   optionText: {
-    fontSize: 16,
-    color: '#374151',
+    fontSize: Typography.fontSize.base,
+    color: Colors.gray700,
     flex: 1,
   },
   optionTextSelected: {
-    color: '#007AFF',
-    fontWeight: '500',
+    color: Colors.primary,
+    fontWeight: Typography.fontWeight.medium,
   },
   checkmark: {
     fontSize: 18,

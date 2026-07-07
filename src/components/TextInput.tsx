@@ -9,6 +9,7 @@ import {
   ViewStyle,
   TextStyle,
 } from 'react-native';
+import { Colors, Typography, BorderRadius } from '../styles';
 
 interface TextInputProps extends Omit<RNTextInputProps, 'style'> {
   label?: string;
@@ -63,11 +64,11 @@ const TextInput: React.FC<TextInputProps> = ({
   isPassword = false,
   variant = 'outline',
   size = 'md',
-  borderColor = '#D1D5DB',
-  focusColor = '#007AFF',
-  errorColor = '#FF3B30',
+  borderColor = Colors.gray300,
+  focusColor = Colors.primary,
+  errorColor = Colors.danger,
   backgroundColor,
-  borderRadius = 12,
+  borderRadius = BorderRadius.lg,
   onBlur,
   onFocus,
   ...rest
@@ -85,7 +86,7 @@ const TextInput: React.FC<TextInputProps> = ({
 
   const resolvedBg =
     variant === 'filled'
-      ? backgroundColor || '#F2F2F7'
+      ? backgroundColor || Colors.secondary
       : backgroundColor || 'transparent';
 
   const handleFocus = (e: any) => {
@@ -140,7 +141,7 @@ const TextInput: React.FC<TextInputProps> = ({
             styles.input,
             {
               fontSize: sizeStyle.fontSize,
-              color: disabled ? '#9CA3AF' : '#000',
+              color: disabled ? Colors.gray400 : Colors.textPrimary,
               textAlignVertical: multiline ? 'top' : 'center',
             },
             inputStyle,
@@ -148,7 +149,7 @@ const TextInput: React.FC<TextInputProps> = ({
           value={value}
           onChangeText={onChangeText}
           placeholder={placeholder}
-          placeholderTextColor="#9CA3AF"
+          placeholderTextColor={Colors.gray400}
           editable={!disabled}
           secureTextEntry={isPassword && !showPassword}
           multiline={multiline}
@@ -195,12 +196,12 @@ const styles = StyleSheet.create({
     marginBottom: 0,
   },
   label: {
-    color: '#374151',
-    fontWeight: '500',
+    color: Colors.gray700,
+    fontWeight: Typography.fontWeight.medium,
     marginBottom: 6,
   },
   required: {
-    color: '#FF3B30',
+    color: Colors.danger,
   },
   input: {
     flex: 1,

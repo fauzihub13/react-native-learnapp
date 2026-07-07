@@ -8,6 +8,7 @@ import {
   ViewStyle,
   TextStyle,
 } from 'react-native';
+import { Colors, Typography, BorderRadius } from '../styles';
 
 type ButtonVariant = 'primary' | 'secondary' | 'outline' | 'ghost';
 type ButtonSize = 'sm' | 'md' | 'lg';
@@ -32,10 +33,10 @@ interface ButtonProps extends Omit<PressableProps, 'style'> {
 }
 
 const VARIANT_COLORS: Record<ButtonVariant, { bg: string; text: string; border: string }> = {
-  primary: { bg: '#007AFF', text: '#FFFFFF', border: '#007AFF' },
-  secondary: { bg: '#F2F2F7', text: '#000000', border: '#F2F2F7' },
-  outline: { bg: 'transparent', text: '#007AFF', border: '#007AFF' },
-  ghost: { bg: 'transparent', text: '#007AFF', border: 'transparent' },
+  primary: { bg: Colors.primary, text: Colors.textInverse, border: Colors.primary },
+  secondary: { bg: Colors.secondary, text: Colors.textPrimary, border: Colors.secondary },
+  outline: { bg: 'transparent', text: Colors.primary, border: Colors.primary },
+  ghost: { bg: 'transparent', text: Colors.primary, border: 'transparent' },
 };
 
 const SIZE_STYLES: Record<ButtonSize, { height: number; fontSize: number; paddingHorizontal: number }> = {
@@ -52,7 +53,7 @@ const Button: React.FC<ButtonProps> = ({
   backgroundColor,
   borderColor,
   borderWidth,
-  borderRadius = 12,
+  borderRadius = BorderRadius.lg,
   textColor,
   fontSize,
   fontWeight = '600',

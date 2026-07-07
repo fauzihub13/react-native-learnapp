@@ -15,6 +15,7 @@ import {
   PanResponder,
 } from 'react-native';
 import Button from './Button';
+import { Colors, Typography, Spacing, BorderRadius } from '../styles';
 
 const { height: SCREEN_HEIGHT } = Dimensions.get('window');
 const DISMISS_THRESHOLD = 120;
@@ -318,20 +319,20 @@ const styles = StyleSheet.create({
   handle: {
     width: 40,
     height: 5,
-    borderRadius: 3,
-    backgroundColor: '#D1D5DB',
+    borderRadius: BorderRadius.sm,
+    backgroundColor: Colors.gray300,
     alignSelf: 'center',
-    marginTop: 12,
-    marginBottom: 4,
+    marginTop: Spacing.md,
+    marginBottom: Spacing.xs,
   },
   header: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    paddingHorizontal: 16,
-    paddingVertical: 16,
+    paddingHorizontal: Spacing.base,
+    paddingVertical: Spacing.base,
     borderBottomWidth: 1,
-    borderBottomColor: '#F3F4F6',
+    borderBottomColor: Colors.gray100,
   },
   headerLeft: {
     width: 40,
@@ -346,36 +347,36 @@ const styles = StyleSheet.create({
     alignItems: 'flex-end',
   },
   closeButton: {
-    padding: 4,
+    padding: Spacing.xs,
   },
   closeIcon: {
     fontSize: 18,
-    color: '#6B7280',
-    fontWeight: '600',
+    color: Colors.gray500,
+    fontWeight: Typography.fontWeight.semibold,
   },
   title: {
-    fontSize: 17,
-    fontWeight: '600',
-    color: '#000',
+    fontSize: Typography.fontSize.base,
+    fontWeight: Typography.fontWeight.semibold,
+    color: Colors.textPrimary,
   },
   scrollView: {
     flexGrow: 0,
   },
   scrollContent: {
-    padding: 20,
+    padding: Spacing.lg,
   },
   description: {
-    fontSize: 15,
-    color: '#6B7280',
+    fontSize: Typography.fontSize.md,
+    color: Colors.textSecondary,
     lineHeight: 22,
-    marginBottom: 16,
+    marginBottom: Spacing.base,
   },
   actions: {
-    padding: 16,
+    padding: Spacing.base,
     paddingTop: 0,
   },
   actionSpacing: {
-    marginBottom: 10,
+    marginBottom: Spacing.sm,
   },
 });
 

@@ -7,6 +7,7 @@ import {
   ViewStyle,
   TextStyle,
 } from 'react-native';
+import { Colors, Typography, Spacing, BorderRadius } from '../styles';
 
 interface CheckboxProps {
   checked: boolean;
@@ -192,39 +193,39 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   checkmark: {
-    color: '#FFFFFF',
-    fontWeight: '700',
+    color: Colors.textInverse,
+    fontWeight: Typography.fontWeight.bold,
     lineHeight: 20,
   },
   labelContainer: {
     flex: 1,
-    marginHorizontal: 10,
+    marginHorizontal: Spacing.sm,
   },
   label: {
-    color: '#374151',
-    fontWeight: '500',
+    color: Colors.gray700,
+    fontWeight: Typography.fontWeight.medium,
   },
   description: {
-    fontSize: 13,
-    color: '#6B7280',
+    fontSize: Typography.fontSize.sm,
+    color: Colors.textSecondary,
     marginTop: 2,
   },
   disabledText: {
-    color: '#9CA3AF',
+    color: Colors.gray400,
   },
   groupLabel: {
-    fontSize: 15,
-    fontWeight: '600',
-    color: '#374151',
-    marginBottom: 12,
+    fontSize: Typography.fontSize.md,
+    fontWeight: Typography.fontWeight.semibold,
+    color: Colors.gray700,
+    marginBottom: Spacing.md,
   },
   groupItem: {
-    marginBottom: 12,
+    marginBottom: Spacing.md,
   },
   errorText: {
-    fontSize: 13,
-    color: '#FF3B30',
-    marginTop: 4,
+    fontSize: Typography.fontSize.sm,
+    color: Colors.danger,
+    marginTop: Spacing.xs,
   },
 });
 

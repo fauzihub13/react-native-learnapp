@@ -9,6 +9,7 @@ import {
   Image,
   ImageSourcePropType,
 } from 'react-native';
+import { Colors, Typography, BorderRadius, Shadow, Spacing } from '../styles';
 
 interface CardProps {
   children?: React.ReactNode;
@@ -33,9 +34,9 @@ interface CardProps {
 }
 
 const VARIANT_STYLES: Record<string, { bg: string; border: number; borderColor: string }> = {
-  elevated: { bg: '#FFFFFF', border: 0, borderColor: 'transparent' },
-  outlined: { bg: '#FFFFFF', border: 1, borderColor: '#E5E7EB' },
-  filled: { bg: '#F9FAFB', border: 0, borderColor: 'transparent' },
+  elevated: { bg: Colors.white, border: 0, borderColor: 'transparent' },
+  outlined: { bg: Colors.white, border: 1, borderColor: Colors.border },
+  filled: { bg: Colors.gray50, border: 0, borderColor: 'transparent' },
 };
 
 const Card: React.FC<CardProps> = ({
@@ -49,8 +50,8 @@ const Card: React.FC<CardProps> = ({
   disabled = false,
   variant = 'elevated',
   backgroundColor,
-  borderRadius = 16,
-  padding = 16,
+  borderRadius = BorderRadius.xl,
+  padding = Spacing.base,
   shadow = true,
   headerRight,
   footer,
@@ -69,15 +70,7 @@ const Card: React.FC<CardProps> = ({
     borderColor: variantStyle.borderColor,
     overflow: 'hidden',
     opacity: disabled ? 0.5 : 1,
-    ...(shadow && variant === 'elevated'
-      ? {
-          shadowColor: '#000',
-          shadowOffset: { width: 0, height: 2 },
-          shadowOpacity: 0.08,
-          shadowRadius: 8,
-          elevation: 3,
-        }
-      : {}),
+    ...(shadow && variant === 'elevated' ? Shadow.md : {}),
   };
 
   const hasHeader = title || subtitle || headerRight;
@@ -173,25 +166,25 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginBottom: 8,
+    marginBottom: Spacing.sm,
   },
   headerText: {
     flex: 1,
-    marginRight: 8,
+    marginRight: Spacing.sm,
   },
   title: {
-    fontSize: 17,
-    fontWeight: '600',
-    color: '#000',
+    fontSize: Typography.fontSize.base,
+    fontWeight: Typography.fontWeight.semibold,
+    color: Colors.textPrimary,
   },
   subtitle: {
-    fontSize: 13,
-    color: '#6B7280',
+    fontSize: Typography.fontSize.sm,
+    color: Colors.textSecondary,
     marginTop: 2,
   },
   description: {
-    fontSize: 15,
-    color: '#374151',
+    fontSize: Typography.fontSize.md,
+    color: Colors.gray700,
     lineHeight: 22,
   },
   content: {
@@ -199,8 +192,8 @@ const styles = StyleSheet.create({
   },
   footer: {
     borderTopWidth: 1,
-    borderTopColor: '#F3F4F6',
-    padding: 12,
+    borderTopColor: Colors.gray100,
+    padding: Spacing.md,
   },
   imageTop: {
     width: '100%',
