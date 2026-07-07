@@ -124,7 +124,7 @@ const styles = StyleSheet.create({
     right: 0,
     padding: Spacing.base,
     backgroundColor: 'rgba(0,0,0,0.4)',
-    backgroundBlurRadius: 10,
+    // backgroundBlurRadius: 10,
   },
   cardTitle: {
     fontSize: Typography.fontSize.md,

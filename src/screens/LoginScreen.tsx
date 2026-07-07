@@ -17,7 +17,7 @@ const LoginScreen: React.FC = () => {
   const [username, setUsername] = useState('emilys');
   const [password, setPassword] = useState('emilyspass');
   const [loading, setLoading] = useState(false);
-  const [errors, setErrors] = useState<Record<string, string>>({});
+  const [errors, setErrors] = useState<Record<string, string | undefined>>({});
 
   const handleLogin = async () => {
     setErrors({});

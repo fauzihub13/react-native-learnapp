@@ -14,7 +14,7 @@ interface CheckboxProps {
   onChange: (checked: boolean) => void;
   label?: string;
   description?: string;
-  disabled?: false;
+  disabled?: boolean;
   size?: 'sm' | 'md' | 'lg';
   color?: string;
   borderColor?: string;
