@@ -69,6 +69,20 @@ const MENU_ITEMS: MenuItem[] = [
     screen: 'RadioDemo',
     color: '#FF6482',
   },
+  {
+    id: '9',
+    title: 'Tab Bar',
+    subtitle: 'Underline, Filled, Pills, scrollable',
+    screen: 'TabBarDemo',
+    color: '#64D2FF',
+  },
+  {
+    id: '10',
+    title: 'Toast',
+    subtitle: 'Notifikasi singkat dengan action',
+    screen: 'ToastDemo',
+    color: '#FF9F0A',
+  },
 ];
 
 const HomeScreen: React.FC = () => {

@@ -12,6 +12,8 @@ import CheckboxDemoScreen from '../screens/CheckboxDemoScreen';
 import ModalDemoScreen from '../screens/ModalDemoScreen';
 import SwitchDemoScreen from '../screens/SwitchDemoScreen';
 import RadioDemoScreen from '../screens/RadioDemoScreen';
+import TabBarDemoScreen from '../screens/TabBarDemoScreen';
+import ToastDemoScreen from '../screens/ToastDemoScreen';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -70,6 +72,16 @@ const AppNavigator: React.FC = () => {
           name="RadioDemo"
           component={RadioDemoScreen}
           options={{ title: 'Radio' }}
+        />
+        <Stack.Screen
+          name="TabBarDemo"
+          component={TabBarDemoScreen}
+          options={{ title: 'Tab Bar' }}
+        />
+        <Stack.Screen
+          name="ToastDemo"
+          component={ToastDemoScreen}
+          options={{ title: 'Toast' }}
         />
       </Stack.Navigator>
     </NavigationContainer>

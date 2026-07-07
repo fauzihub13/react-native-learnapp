@@ -7,3 +7,6 @@ export { default as Checkbox, CheckboxGroup } from './Checkbox';
 export { default as Modal } from './Modal';
 export { default as Switch, SwitchGroup } from './Switch';
 export { default as Radio, RadioGroup } from './Radio';
+export { default as TabBar, TabContent } from './TabBar';
+export { default as ToastProvider, useToast } from './Toast';
+export type { ToastConfig, ToastType, ToastPosition } from './Toast';

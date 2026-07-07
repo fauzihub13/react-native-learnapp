@@ -10,6 +10,8 @@ export type RootStackParamList = {
   ModalDemo: undefined;
   SwitchDemo: undefined;
   RadioDemo: undefined;
+  TabBarDemo: undefined;
+  ToastDemo: undefined;
 };
 
 export type RootStackScreenProps<T extends keyof RootStackParamList> =
