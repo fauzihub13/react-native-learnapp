@@ -19,6 +19,7 @@ import LoginScreen from '../screens/LoginScreen';
 import ProductsScreen from '../screens/ProductsScreen';
 import ProductDetailScreen from '../screens/ProductDetailScreen';
 import ProductFormScreen from '../screens/ProductFormScreen';
+import SunifyHomeScreen from '../screens/SunifyHomeScreen';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -116,6 +117,11 @@ const AppNavigator: React.FC = () => {
         <Stack.Screen
           name="EditProduct"
           component={ProductFormScreen}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="SunifyHome"
+          component={SunifyHomeScreen}
           options={{ headerShown: false }}
         />
       </Stack.Navigator>

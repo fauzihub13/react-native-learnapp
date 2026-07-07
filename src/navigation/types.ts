@@ -18,6 +18,7 @@ export type RootStackParamList = {
   ProductDetail: { id: number };
   AddProduct: undefined;
   EditProduct: { id: number };
+  SunifyHome: undefined;
 };
 
 export type RootStackScreenProps<T extends keyof RootStackParamList> =

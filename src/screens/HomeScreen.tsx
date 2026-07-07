@@ -97,6 +97,13 @@ const MENU_ITEMS: MenuItem[] = [
     screen: 'Login',
     color: '#FF375F',
   },
+  {
+    id: '13',
+    title: 'Sunify Home',
+    subtitle: 'UI Slicing: Weather, Menu, News, Vendor',
+    screen: 'SunifyHome',
+    color: '#007AFF',
+  },
 ];
 
 const HomeScreen: React.FC = () => {
